@@ -4,19 +4,19 @@ import Navbar from "./components/Navbar";
 const App = () => {
   return (
     <div>
-      <Grid templateAreas={{
-        base: `"nav" "main" "asid"`,
-        lg:`"nav nav"  "asid main"`
-      }}>
+      <Grid
+        templateAreas={{
+          base: `"nav" "main" "asid"`,
+          lg: `"nav nav"  "asid main"`,
+        }}
+      >
         <GridItem area={"nav"}>
           <Navbar />
         </GridItem>
-        <GridItem area={"asid"} bg={"gold"} display={{ base: "none", lg: "block" }}>
+        <GridItem area={"asid"} display={{ base: "none", lg: "block" }}>
           Aside
         </GridItem>
-        <GridItem area={"main"} bg={"dodgerblue"}>
-          Main
-        </GridItem>
+        <GridItem area={"main"}>Main</GridItem>
       </Grid>
     </div>
   );
