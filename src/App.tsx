@@ -4,7 +4,7 @@ import GameGrid from "./components/GameGrid";
 
 const App = () => {
   return (
-    <div>
+    <>
       <Grid
         templateAreas={{
           base: `"nav" "main" "asid"`,
@@ -21,7 +21,7 @@ const App = () => {
           <GameGrid />
         </GridItem>
       </Grid>
-    </div>
+    </>
   );
 };
 
