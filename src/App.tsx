@@ -21,7 +21,7 @@ const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
           <Navbar />
         </GridItem>
         <GridItem paddingX={5} area={"asid"} display={{ base: "none", lg: "block" }}>
-          <GenreList onSelectGenre={setSelectedGenre} />
+          <GenreList selectedGenre={selectedGenre} onSelectGenre={setSelectedGenre} />
         </GridItem>
         <GridItem area={"main"}>
           <GameGrid selectedGenre={selectedGenre} />
