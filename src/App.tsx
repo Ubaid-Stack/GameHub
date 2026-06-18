@@ -7,7 +7,7 @@ import type { Genre } from "./hooks/useGenres";
 import PlatformsSelector from "./components/PlatformsSelector";
 import type { Platform } from "./hooks/useGame";
 import SortSelector from "./components/SortSelector";
-import { HStack } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -40,20 +40,22 @@ const App = () => {
           />
         </GridItem>
         <GridItem area={"main"}>
-          <HStack spacing={5} marginBottom={5} padding={2}>
-            <PlatformsSelector
-              selectedPlatform={gameQuery.platform}
-              onSelectPlatform={(platform) =>
-                setGameQuery({ ...gameQuery, platform })
-              }
-            />
+          <Flex marginBottom={5} padding={2}>
+            <Box marginRight={5}>
+              <PlatformsSelector
+                selectedPlatform={gameQuery.platform}
+                onSelectPlatform={(platform) =>
+                  setGameQuery({ ...gameQuery, platform })
+                }
+              />
+            </Box>
             <SortSelector
               sortOrder={gameQuery.sortOrder}
               onSelectSortOrder={(sortOrder) =>
                 setGameQuery({ ...gameQuery, sortOrder })
               }
             />
-          </HStack>
+          </Flex>
           <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
