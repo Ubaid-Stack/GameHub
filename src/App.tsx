@@ -9,6 +9,7 @@ import type { Platform } from "./hooks/useGame";
 import SortSelector from "./components/SortSelector";
 import { Box, Flex } from "@chakra-ui/react";
 import GameHeading from "./components/GameHeading";
+import { Analytics } from "@vercel/analytics/react";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -68,6 +69,7 @@ const App = () => {
           <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
+      <Analytics />
     </>
   );
 };
