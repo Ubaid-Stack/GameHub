@@ -5,7 +5,7 @@ import GenreList from "./components/GenreList";
 import { useState } from "react";
 import type { Genre } from "./hooks/useGenres";
 import PlatformsSelector from "./components/PlatformsSelector";
-import type { Platform } from "./hooks/useGame";
+import {type Platform } from "./hooks/usePlateform";
 import SortSelector from "./components/SortSelector";
 import { Box, Flex } from "@chakra-ui/react";
 import GameHeading from "./components/GameHeading";
