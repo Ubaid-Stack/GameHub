@@ -17,6 +17,11 @@ const createApiClient = <T>(endpoint: string) => ({
       .get<T>(endpoint, config)
       .then((response) => response.data);
   },
+  get: (id: number | string) => {
+    return axiosInstance
+      .get<T>(`${endpoint}/${id}`)
+      .then((response) => response.data);
+  },
 });
 
 export default createApiClient;
