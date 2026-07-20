@@ -1,8 +1,8 @@
-import type { Platform } from "@/entites/Platform";
-import type { Genre } from "./Genre";
-import type { Publisher } from "./publisher";
+import type Platform from "@/entites/Platform";
+import type Genre from "./Genre";
+import type Publisher from "./publisher";
 
-export interface Game {
+export default interface Game {
   id: number;
   name: string;
   background_image: string;

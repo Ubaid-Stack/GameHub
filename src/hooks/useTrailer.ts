@@ -1,6 +1,6 @@
 import createApiClient from "../services/apiClient";
 import type { FetchResponse } from "../services/apiClient";
-import type { Trailer } from "../entites/Trailer";
+import type Trailer from "../entites/Trailer";
 import { useQuery } from "@tanstack/react-query";
 
 const useTrailers = (gameId: number) => {
