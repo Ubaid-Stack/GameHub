@@ -1,4 +1,4 @@
-import type Platform from "@/entites/Platform";
+import type Platform from "@/entities/Platform";
 import type Genre from "./Genre";
 import type Publisher from "./publisher";
 
