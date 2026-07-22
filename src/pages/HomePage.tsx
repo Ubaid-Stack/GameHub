@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/react";
 import GameGrid from "../components/GameGrid";
 import GameHeading from "../components/GameHeading";
 import GenreList from "../components/GenreList";
@@ -36,7 +35,7 @@ const HomePage = () => {
           <GameGrid />
         </GridItem>
       </Grid>
-      <Analytics />
+      
     </>
   );
 };
