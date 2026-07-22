@@ -1,383 +1,347 @@
-# GameHub
+# 🎮 GameHub
 
-A modern game discovery app built with React, TypeScript, and Vite. GameHub lets users browse video games from the RAWG API, filter them by genre and platform, sort the results, search by name, and open detailed pages with descriptions, trailers, screenshots, and metadata.
+A modern game discovery application built with **React**, **TypeScript**, and **Vite**. Browse thousands of games using the RAWG API, search by title, filter by genre and platform, sort results, and explore detailed game pages with trailers, screenshots, and metadata.
 
-Live Demo: https://game-hub-eta-eight-47.vercel.app/
+## 🌐 Live Demo
 
-## Overview
+👉 https://game-hub-eta-eight-47.vercel.app/
 
-GameHub is a front-end application focused on game discovery and browsing. It uses RAWG as its data source and presents the data in a clean, responsive interface built with Chakra UI.
+---
 
-The app supports:
+# ✨ Features
 
-- Infinite scrolling game listings
-- Genre filtering
-- Platform filtering
-- Sorting by multiple criteria
-- Keyword search
-- Individual game detail pages
-- Trailer playback
-- Screenshot galleries
-- Dark mode support
-- Route-level error handling
-- Analytics via Vercel Analytics
-
-## Features
-
-### Home Page
-
-- Displays a grid of games fetched from RAWG.
-- Loads additional results automatically as the user scrolls.
-- Shows a responsive skeleton state while data is loading.
-- Uses a shared header and filter bar for search and browsing.
-
-### Search
-
-- Search input in the navbar allows users to search games by name.
-- Search updates the game list using the global query store.
-- Submitting the form returns the user to the home page and refreshes the results.
-
-### Filters and Sorting
-
-- Genre sidebar lets users narrow the list by genre.
-- Platform dropdown lets users filter by parent platform.
-- Sort dropdown supports multiple ordering modes:
+- 🔍 Search games by name
+- 🎮 Browse thousands of games
+- ♾️ Infinite scrolling
+- 🎯 Filter by genre
+- 💻 Filter by platform
+- 📊 Sort by:
   - Relevance
   - Name
   - Release Date
   - Date Added
   - Popularity
-  - Average rating
+  - Average Rating
+- 📄 Detailed game pages
+- ▶️ Game trailers
+- 🖼️ Screenshot gallery
+- 🌙 Dark mode support
+- 📱 Fully responsive design
+- ⚡ Skeleton loading states
+- 🚨 Route-level error handling
+- 📈 Vercel Analytics
 
-### Game Cards
+---
 
-Each game card shows:
+# 🛠️ Tech Stack
 
-- Cover image
-- Platform icons
-- Metacritic score badge
-- Game title
-- Rating emoji indicator
+### Frontend
 
-### Game Detail Page
-
-Each game detail page includes:
-
-- Game title
-- Expandable long description
-- Platform list
-- Metascore
-- Genres
-- Publishers
-- Trailer video
-- Screenshot gallery
-
-### Responsive UI
-
-- Sidebar genres appear only on larger screens.
-- The layout adapts to mobile, tablet, and desktop.
-- Chakra UI handles responsive spacing, grids, and component states.
-
-### Theme and Color Mode
-
-- Dark mode is the default theme.
-- A color mode switch in the navbar lets users toggle the theme.
-- Chakra color mode setup is handled at the app root.
-
-### Error Handling
-
-- Unknown routes render a custom error page.
-- Detail-page query failures are surfaced through React Router error boundaries or thrown errors.
-
-### Analytics
-
-- Vercel Analytics is mounted in the shared layout to track site usage.
-
-## Tech Stack
-
-### Core
-
-- React 18
+- React
 - TypeScript
 - Vite
 
-### UI and Styling
+### UI
 
 - Chakra UI
 - Emotion
-- Chakra color mode support
-
-### Data and State
-
-- React Query for server state, caching, and infinite queries
-- Zustand for client-side query/filter state
-- Axios for API requests
-
-### Routing and UX
-
-- React Router
-- react-infinite-scroll-component
 - React Icons
 
-### Deployment and Analytics
+### Data Fetching
+
+- React Query (TanStack Query)
+- Axios
+
+### State Management
+
+- Zustand
+
+### Routing
+
+- React Router
+
+### Infinite Scroll
+
+- react-infinite-scroll-component
+
+### Deployment
 
 - Vercel
 - @vercel/analytics
 
-## How the App Works
+---
 
-### State Management
+# 📂 Project Structure
 
-GameHub uses Zustand to store the current browsing query in a single global object:
+```text
+src/
+│
+├── assets/
+├── components/
+├── data/
+├── entites/
+├── hooks/
+├── pages/
+├── services/
+└── store/
+```
+
+### Folder Overview
+
+| Folder | Purpose |
+|---------|----------|
+| assets | Images, logos, placeholders, emojis |
+| components | Reusable UI components |
+| data | Local fallback datasets |
+| entites | TypeScript interfaces |
+| hooks | React Query hooks |
+| pages | Route pages |
+| services | API client & utilities |
+| store | Zustand global store |
+
+---
+
+# 🚀 Application Overview
+
+## Home Page
+
+- Infinite scrolling game grid
+- Genre sidebar
+- Platform selector
+- Sort selector
+- Search support
+- Loading skeletons
+
+## Game Details
+
+Each game page displays:
+
+- Game title
+- Expandable description
+- Platforms
+- Genres
+- Publishers
+- Metacritic score
+- Trailer
+- Screenshot gallery
+
+---
+
+# ⚙️ State Management
+
+GameHub uses **Zustand** for client-side state.
+
+The global query state stores:
 
 - genreId
 - platformId
 - sortOrder
 - searchText
 
-When a user changes a filter or searches for a title, the store updates immediately. React Query then uses that store state as part of the query key, which automatically refreshes the game list.
+Whenever these values change, React Query automatically refetches the appropriate game list.
 
-### Server State
+---
 
-React Query handles all API data:
+# 📡 Server State
 
-- `useGame` fetches paginated game lists with `useInfiniteQuery`
-- `useGames` fetches a single game by slug
-- `useGenres` fetches the genre list
-- `usePlatforms` fetches parent platforms
-- `useScreenshots` fetches game screenshots
-- `useTrailer` fetches game trailers
+React Query manages all server data.
 
-This gives the app:
+Hooks include:
 
-- request caching
-- background refetching
-- stale-time control
-- infinite pagination
-- loading and error state management
+- useGame
+- useGames
+- useGenres
+- usePlatforms
+- useScreenshots
+- useTrailer
 
-### RAWG API Integration
+Benefits:
 
-All RAWG requests go through a centralized Axios client. The client injects the API key from environment variables and points to the RAWG base URL.
+- Request caching
+- Background refetching
+- Infinite pagination
+- Loading states
+- Error handling
+- Stale time management
 
-Used RAWG endpoints:
+---
 
-- `GET /games`
-- `GET /games/:slug`
-- `GET /genres`
-- `GET /platforms/lists/parents`
-- `GET /games/:gameId/movies`
-- `GET /games/:gameId/screenshots`
+# 🎮 RAWG API Integration
 
-The home page list query uses these RAWG parameters:
+GameHub uses the RAWG Video Games Database API.
 
-- `genres`
-- `parent_platforms`
-- `ordering`
-- `search`
-- `page`
+Endpoints used:
 
-### Seed Data for Faster Initial Rendering
+- GET /games
+- GET /games/:slug
+- GET /genres
+- GET /platforms/lists/parents
+- GET /games/:gameId/movies
+- GET /games/:gameId/screenshots
 
-The app includes local fallback datasets for:
+Game list requests support:
 
 - genres
-- platforms
+- parent_platforms
+- ordering
+- search
+- page
 
-These seed datasets are used to render the UI immediately, even before the network request completes. That gives the app faster first paint and avoids blank selector states.
+---
 
-## Project Structure
+# ⚡ Performance
 
-```text
-src/
-  assets/
-  components/
-  data/
-  entites/
-  hooks/
-  pages/
-  services/
-  store/
-```
+To improve perceived loading speed, the application includes local fallback datasets for:
 
-### Folder Breakdown
+- Genres
+- Platforms
 
-- `assets/` stores local images like logos, placeholders, and emoji graphics.
-- `components/` contains reusable UI pieces such as cards, selectors, lists, skeletons, and detail widgets.
-- `data/` contains local fallback genre and platform data.
-- `entites/` contains TypeScript interfaces for RAWG entities.
-- `hooks/` contains React Query hooks and selector helpers.
-- `pages/` contains route-level views.
-- `services/` contains the RAWG API client and image helper utilities.
-- `store/` contains the Zustand browsing-query store.
+These datasets render immediately while fresh data is fetched from the API.
 
-## Main Pages
+---
 
-### Layout
+# 🎨 UI Highlights
 
-Shared application shell that renders:
+- Dark mode by default
+- Responsive layout
+- Responsive Chakra UI Grid
+- Hover animations
+- Platform icons
+- Placeholder images
+- Consistent image cropping
+- Skeleton loading components
 
-- navbar
-- page content outlet
-- Vercel Analytics
+---
 
-### Home Page
+# 🔐 Environment Variables
 
-The main browsing page. It shows:
-
-- genre sidebar
-- page heading
-- platform and sort selectors
-- infinite scrolling game grid
-
-### Game Detail Page
-
-Displays a single game using the slug from the URL. It fetches:
-
-- the game record
-- its trailer
-- its screenshots
-
-### Error Page
-
-Fallback UI for invalid routes or unexpected routing errors.
-
-## Main Components
-
-### Navbar
-
-Contains:
-
-- app logo
-- search box
-- theme switch
-
-### SearchInput
-
-A controlled form that updates the global search state and navigates back to the home page.
-
-### GenreList
-
-Shows available genres in a vertical list with thumbnail images.
-
-### PlatformsSelector
-
-Menu for choosing a parent platform.
-
-### SortSelector
-
-Menu for changing the ordering parameter passed to RAWG.
-
-### GameGrid
-
-Renders the infinite-scroll grid of game cards.
-
-### GameCard
-
-Shows the game cover, platforms, score, title, and rating emoji.
-
-### GameAttributes
-
-Displays the selected game’s platform, metascore, genre, and publisher information.
-
-### GameTrailer
-
-Plays the first available RAWG trailer, preferring the 480p source and falling back to the maximum-quality source.
-
-### GameScreenshots
-
-Shows screenshots in a responsive grid.
-
-### ExpandableText
-
-Truncates long descriptions and allows toggling between collapsed and expanded views.
-
-## Styling and Visual System
-
-GameHub uses Chakra UI as the primary design system. The app theme is customized with:
-
-- dark mode as the initial color mode
-- a custom gray palette tuned for the UI
-- responsive spacing and layout primitives from Chakra
-
-Additional styling details:
-
-- cover cards scale slightly on hover
-- game images are cropped consistently
-- placeholder images are used when RAWG image data is missing
-- platform icons are mapped from platform slugs to React Icons
-
-## Environment Variables
-
-Create a `.env` file in the project root with your RAWG API key:
+Create a `.env` file in the project root.
 
 ```env
 VITE_RAWG_API_KEY=your_rawg_api_key_here
 ```
 
-An example file is provided as `.env.example`.
+An example file is included as:
 
-## Getting Started
+```
+.env.example
+```
 
-### Prerequisites
+---
+
+# 🚀 Getting Started
+
+## Prerequisites
 
 - Node.js
 - npm
 
-### Install Dependencies
+## Installation
 
 ```bash
 npm install
 ```
 
-### Configure Environment Variables
+## Configure Environment Variables
 
-Create a `.env` file and add your RAWG API key:
-
-```bash
+```env
 VITE_RAWG_API_KEY=your_rawg_api_key_here
 ```
 
-### Run the Development Server
+## Start Development Server
 
 ```bash
 npm run dev
 ```
 
-### Build for Production
+## Build
 
 ```bash
 npm run build
 ```
 
-### Preview the Production Build
+## Preview Production Build
 
 ```bash
 npm run preview
 ```
 
-## Scripts
+---
 
-- `npm run dev` - start the Vite development server
-- `npm run build` - type-check and build the app for production
-- `npm run lint` - run ESLint across the codebase
-- `npm run preview` - preview the production build locally
+# 📜 Available Scripts
 
-## Deployment
+```bash
+npm run dev
+```
 
-The app is deployed on Vercel:
+Starts the development server.
+
+```bash
+npm run build
+```
+
+Builds the production version.
+
+```bash
+npm run preview
+```
+
+Previews the production build locally.
+
+```bash
+npm run lint
+```
+
+Runs ESLint.
+
+---
+
+# 🌍 Deployment
+
+The application is deployed on **Vercel**.
+
+Live Site:
 
 https://game-hub-eta-eight-47.vercel.app/
 
-For deployment, make sure the `VITE_RAWG_API_KEY` environment variable is configured in the hosting platform.
+Remember to configure:
 
-## RAWG API Notes
+```
+VITE_RAWG_API_KEY
+```
 
-- Game data comes from the RAWG public API.
-- The app depends on a valid RAWG API key.
-- Search and filter results are driven entirely by RAWG query parameters.
-- The UI uses local fallback genre and platform data so the app remains usable while the API loads.
+inside your hosting platform.
 
-## License
+---
 
-This project does not currently define a license.
+# 📖 Learning Goals
+
+This project was built to practice and demonstrate:
+
+- React Router
+- React Query
+- Zustand
+- Infinite Queries
+- API Integration
+- TypeScript
+- Component Architecture
+- Responsive Design
+- Chakra UI
+- Modern React Patterns
+
+---
+
+# 🙏 Acknowledgements
+
+- RAWG Video Games Database API
+- Chakra UI
+- TanStack Query
+- React Router
+- Zustand
+- Vercel
+
+---
+
+# 📄 License
+
+This project currently does not include a license.
